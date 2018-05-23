@@ -2,7 +2,7 @@
 Zweites Rechnernetze Labor
 
 ## 4.3.1
-Anfang des Verbindungsaufbaus
+In folgenden drei Paketen geschiet der Verbindungsaufbau
 
 ```
 No.     Time           Source                Destination           Protocol Length
@@ -78,3 +78,4 @@ Transmission Control Protocol, Src Port: 49246, Dst Port: 6777, Seq: 1, Ack: 1, 
     [Calculated window size: 17408]
     [Window size scaling factor: 256]
 ```
+Man kann erkennen, dass zuerst ein SYN TCP Paket (No. 1) übermittelt wird, welches von einem SYN,ACK TCP Paket (No. 2) beantwortet wird. Dieses wiederum wird von einem ACK TCP Paket (No. 3) beantwortet.
