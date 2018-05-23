@@ -294,3 +294,21 @@ Bei dieser Aufgabe werden wir unser TCP Empfangsfenster etwas auslasten. Dies er
 61	145.018830	192.168.31.15	192.168.31.16	TCP	54	6777 → 49479 [ACK] Seq=1 Ack=29899 Win=13056 Len=0	0.028823
 64	145.021560	192.168.31.15	192.168.31.16	TCP	54	6777 → 49479 [ACK] Seq=1 Ack=32819 Win=9984 Len=0	0.000015
 ```
+
+## 4.3.4
+
+Die Verbindung kann hier nicht aufgebaut werden, bevor der Server auf Listen schaltet. Wir bekommen eine RST/ACK Antwort zurück. Der Client denkt, dass unsere Nachrichten verloren gegangen sind. Deshalb versucht er die Nachrichten erneut zu senden. Da die Verbindung nicht vorhanden ist, geht sie verloren und es werden Retransmissions durchgeführt. Diesmal wird aber keine Reset Flag gesetzt, da der Server nicht erreichbar ist.
+
+```
+1	0.000000	192.168.31.16	192.168.31.15	TCP	66	49695 → 6777 [SYN] Seq=0 Win=8192 Len=0 MSS=1460 WS=256 SACK_PERM=1	0.000000
+2	0.000305	192.168.31.15	192.168.31.16	TCP	54	6777 → 49695 [RST, ACK] Seq=1 Ack=1 Win=0 Len=0	0.000305
+3	0.509040	192.168.31.16	192.168.31.15	TCP	66	[TCP Retransmission] 49695 → 6777 [SYN] Seq=0 Win=8192 Len=0 MSS=1460 WS=256 SACK_PERM=1	0.508735
+4	0.509093	192.168.31.15	192.168.31.16	TCP	54	6777 → 49695 [RST, ACK] Seq=1 Ack=1 Win=0 Len=0	0.000053
+5	1.009033	192.168.31.16	192.168.31.15	TCP	62	[TCP Retransmission] 49695 → 6777 [SYN] Seq=0 Win=8192 Len=0 MSS=1460 SACK_PERM=1	0.499940
+6	1.009087	192.168.31.15	192.168.31.16	TCP	54	6777 → 49695 [RST, ACK] Seq=1 Ack=1 Win=0 Len=0	0.000054
+7	22.294197	192.168.31.16	192.168.31.15	TCP	66	49696 → 6777 [SYN] Seq=0 Win=8192 Len=0 MSS=1460 WS=256 SACK_PERM=1	21.285110
+8	25.293650	192.168.31.16	192.168.31.15	TCP	66	[TCP Retransmission] 49696 → 6777 [SYN] Seq=0 Win=8192 Len=0 MSS=1460 WS=256 SACK_PERM=1	2.999453
+9	31.293748	192.168.31.16	192.168.31.15	TCP	62	[TCP Retransmission] 49696 → 6777 [SYN] Seq=0 Win=8192 Len=0 MSS=1460 SACK_PERM=1	6.000098
+```
+
+
