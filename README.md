@@ -2,7 +2,7 @@
 Zweites Rechnernetze Labor
 
 ## 4.3.1
-In folgenden drei Paketen geschiet der Verbindungsaufbau
+In folgenden drei Paketen geschiet der Verbindungsaufbau (connection establishment)
 
 ```
 No.     Time           Source                Destination           Protocol Length
